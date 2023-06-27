@@ -46,6 +46,13 @@ done
 # by this time we can be sure the bootnode file has been completely written.
 bootnode_enr=`cat $CONSENSUS_BOOTNODE_FILE`
 
+while [ ! -f "$WORMTONGUE_CHECKPOINT_FILE" ]; do
+  echo "Waiting for wormtongue checkpoint file: $CONSENSUS_CHECKPOINT_FILE"
+    sleep 1
+done
+
+# trusted_peers=`cat "$TRUSTED_PEERS_FILE"` not used
+
 teku \
     --logging="$CONSENSUS_LOG_LEVEL" \
     --log-color-enabled=false \
@@ -80,4 +87,5 @@ teku \
     --ee-endpoint="http://127.0.0.1:$EXECUTION_ENGINE_HTTP_PORT" \
     --validators-proposer-default-fee-recipient=0xA18Fd83a55A9BEdB96d66C24b768259eED183be3 \
     --p2p-discovery-site-local-addresses-enabled=true \
-    --ee-jwt-secret-file="$JWT_SECRET_FILE"
+    --ee-jwt-secret-file="$JWT_SECRET_FILE" \
+    --Xp2p-gossip-scoring-enabled

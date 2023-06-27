@@ -45,6 +45,13 @@ done
 
 bootnode_enr=`cat $CONSENSUS_BOOTNODE_FILE`
 
+while [ ! -f "$WORMTONGUE_CHECKPOINT_FILE" ]; do
+  echo "Waiting for wormtongue checkpoint file: $CONSENSUS_CHECKPOINT_FILE"
+    sleep 1
+done
+
+# trusted_peers=`cat "$TRUSTED_PEERS_FILE"` not used
+
 echo "Launching lighthouse."
 
 lighthouse \
@@ -67,7 +74,8 @@ lighthouse \
       --boot-nodes="$bootnode_enr" \
       --target-peers="$NUM_CLIENT_NODES" \
       --subscribe-all-subnets \
-      --suggested-fee-recipient=0x00000000219ab540356cbb839cbe05303d7705fa &
+      --suggested-fee-recipient=0x00000000219ab540356cbb839cbe05303d7705fa \
+      --disable-peer-scoring &
 
 sleep 10
 lighthouse \
