@@ -45,6 +45,11 @@ done
 
 bootnode_enr=`cat $CONSENSUS_BOOTNODE_FILE`
 
+while [ ! -f "$WORMTONGUE_CHECKPOINT_FILE" ]; do
+  echo "Waiting for wormtongue checkpoint file: $WORMTONGUE_CHECKPOINT_FILE"
+    sleep 1
+done
+
 echo "Launching lighthouse."
 
 lighthouse \

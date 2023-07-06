@@ -22,6 +22,7 @@ env_vars=(
   "NUM_CLIENT_NODES"
   "EXECUTION_ENGINE_HTTP_PORT"
   "EXECUTION_ENGINE_WS_PORT"
+  "FUZZINESS"
 )
 # verify vars we need are set and available.
 for var in "${env_vars[@]}" ; do
@@ -43,14 +44,7 @@ while [ ! -f "$CONSENSUS_CHECKPOINT_FILE" ]; do
     sleep 1
 done
 
-while [ ! -f "$WORMTONGUE_CHECKPOINT_FILE" ]; do
-  echo "Waiting for wormtongue checkpoint file: $WORMTONGUE_CHECKPOINT_FILE"
-    sleep 1
-done
-
-# trusted_peers=`cat "$TRUSTED_PEERS_FILE"` not used
-
-beacon-chain \
+wormtongue-beacon-chain \
   --log-file="$CONSENSUS_NODE_DIR/beacon.log" \
   --accept-terms-of-use=true \
   --datadir="$CONSENSUS_NODE_DIR" \
@@ -71,17 +65,17 @@ beacon-chain \
   --force-clear-db \
   --jwt-secret="$JWT_SECRET_FILE" \
   --suggested-fee-recipient=0x00000000219ab540356cbb839cbe05303d7705fa \
-  --execution-endpoint="http://127.0.0.1:$EXECUTION_ENGINE_HTTP_PORT" \
   --min-sync-peers 1 \
+  --fuzziness="$FUZZINESS" \
   --disable-peer-scorer &
 
 sleep 10
 
-validator \
+wormtongue-validator \
   --log-file="$CONSENSUS_NODE_DIR/validator.log" \
   --accept-terms-of-use=true \
   --datadir="$CONSENSUS_NODE_DIR" \
-  --chain-config-file="$CONSENSUS_CONFIG_FILE" \
+  --chain-config-file="$COLLECTION_DIR/config.yaml" \
   --beacon-rpc-provider="127.0.0.1:$CONSENSUS_BEACON_RPC_PORT" \
   --monitoring-host=0.0.0.0 --monitoring-port="$CONSENSUS_VALIDATOR_METRIC_PORT" \
   --graffiti="$CONSENSUS_GRAFFITI" \

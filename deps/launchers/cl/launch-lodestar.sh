@@ -45,6 +45,13 @@ done
 
 bootnode_enr=`cat $CONSENSUS_BOOTNODE_FILE`
 
+while [ ! -f "$WORMTONGUE_CHECKPOINT_FILE" ]; do
+  echo "Waiting for wormtongue checkpoint file: $WORMTONGUE_CHECKPOINT_FILE"
+    sleep 1
+done
+
+#trusted_peers=`cat "$TRUSTED_PEERS_FILE"` not used
+
 echo "Launching Lodestar."
 
 lodestar beacon \
@@ -69,7 +76,8 @@ lodestar beacon \
     --enr.udp="$CONSENSUS_CONSENSUS_P2P_PORT" \
     --subscribeAllSubnets=true \
     --eth1.depositContractDeployBlock=0 \
-    --suggestedFeeRecipient=0x00000000219ab540356cbb839cbe05303d7705fa &
+    --suggestedFeeRecipient=0x00000000219ab540356cbb839cbe05303d7705fa \
+    --disablePeerScoring &
 
 sleep 10
 

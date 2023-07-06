@@ -45,6 +45,13 @@ while [ ! -f "$CONSENSUS_CHECKPOINT_FILE" ]; do
     sleep 1
 done
 
+while [ ! -f "$WORMTONGUE_CHECKPOINT_FILE" ]; do
+  echo "Waiting for wormtongue checkpoint file: $WORMTONGUE_CHECKPOINT_FILE"
+    sleep 1
+done
+
+# trusted_peers=`cat "$TRUSTED_PEERS_FILE"` not used
+
 echo "Launching nimbus."
 
 nimbus_beacon_node \
@@ -68,3 +75,4 @@ nimbus_beacon_node \
     --jwt-secret="$JWT_SECRET_FILE" \
     --web3-url=http://"127.0.0.1:$EXECUTION_ENGINE_HTTP_PORT" \
     --dump:on
+    #--direct-peer $trusted_peers
