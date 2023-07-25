@@ -176,8 +176,8 @@ client-instances:
 
     validator-offset-start: 0
 
-  additional-env:
-    validator-password: "testnet-password"
+    additional-env:
+      validator-password: "testnet-password"
 
 # generic instances that run fuzzers/health checks/etc.
 generic-instances:
