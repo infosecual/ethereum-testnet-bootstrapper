@@ -211,7 +211,7 @@ ARG WORMTONGUE_BRANCH
 ARG WORMTONGUE_REPO
 
 # uncomment the following line to force no-cache for wormtongue
-#ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
 RUN git clone "${WORMTONGUE_REPO}" && \
     cd wormtongue && \
