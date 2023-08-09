@@ -115,7 +115,7 @@ consensus-configs:
   wormtongue-consensus-client:
     client: "prysm"
     launcher: "/source/deps/launchers/cl/launch-wormtongue.sh"
-    num-validators: 0      # number of validators for every client node
+    num-validators: 50      # number of validators for every client node
 
     log-level: "debug"
 
@@ -129,7 +129,7 @@ consensus-configs:
   prysm-consensus-client:
     client: "prysm"
     launcher: "/source/deps/launchers/cl/launch-prysm.sh"
-    num-validators: 6      # number of validators for every client node
+    num-validators: 1      # number of validators for every client node
 
     log-level: "debug"
 
@@ -157,7 +157,7 @@ client-instances:
     consensus-config: "wormtongue-consensus-client"
     execution-config: "geth-execution-config"
 
-    validator-offset-start: 0 # we are using zero validators for this client.
+    validator-offset-start: 10
 
     additional-env:
       validator-password: "testnet-password"
