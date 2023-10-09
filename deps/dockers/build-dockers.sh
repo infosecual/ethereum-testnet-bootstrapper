@@ -25,6 +25,3 @@ function container_builder() {
 
 log_step "building etb-all-clients:all-clients-mainnet-current"
 build_image "etb-all-clients:all-clients-mainnet-current" "etb-all-clients-wormtongue-mainnet-current.Dockerfile"
-
-log_step "building etb-all-clients:wormtongue-mainnet-current"
-build_image "etb-all-clients:wormtongue-mainnet-current" "etb-wormtongue-mainnet-current.Dockerfile"
