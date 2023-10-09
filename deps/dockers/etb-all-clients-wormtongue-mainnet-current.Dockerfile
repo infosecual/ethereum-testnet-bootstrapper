@@ -11,11 +11,11 @@ ARG LODESTAR_BRANCH="unstable"
 ARG NIMBUS_ETH2_REPO="https://github.com/status-im/nimbus-eth2.git"
 ARG NIMBUS_ETH2_BRANCH="stable"
 
-ARG PRYSM_REPO="https://github.com/infosecual/wormtongue.git"
-ARG PRYSM_BRANCH="no-peer-disconnect"
-
 ARG TEKU_REPO="https://github.com/ConsenSys/teku.git"
 ARG TEKU_BRANCH="master"
+
+ARG PRYSM_REPO="https://github.com/infosecual/wormtongue.git"
+ARG PRYSM_BRANCH="no-peer-disconnect"
 
 # Execution Clients
 ARG BESU_REPO="https://github.com/hyperledger/besu.git"
@@ -31,9 +31,7 @@ ARG NETHERMIND_BRANCH="master"
 ARG TX_FUZZ_REPO="https://github.com/MariusVanDerWijden/tx-fuzz.git"
 ARG TX_FUZZ_BRANCH="master"
 
-ARG WORMTONGUE_REPO="https://github.com/infosecual/wormtongue.git"
-ARG WORMTONGUE_BRANCH="wormtongue"
-###############################################################################
+#########################################
 # Builder to build all of the clients.
 FROM debian:bullseye-slim AS etb-client-builder
 
@@ -205,21 +203,6 @@ RUN git clone "${NETHERMIND_REPO}" && \
 RUN cd nethermind && \
     dotnet publish src/Nethermind/Nethermind.Runner -c release -o out
 
-# Wormtongue
-FROM etb-client-builder AS wormtongue-builder
-ARG WORMTONGUE_BRANCH
-ARG WORMTONGUE_REPO
-
-# uncomment the following line to force no-cache for wormtongue
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-
-RUN git clone "${WORMTONGUE_REPO}" && \
-    cd wormtongue && \
-    git checkout "${WORMTONGUE_BRANCH}" && \
-    git log -n 1 --format=format:"%H" > /wormtongue.version && \
-    mkdir bins && \
-    go build -o bins ./...
-
 ############################### Misc.  Modules  ###############################
 FROM etb-client-builder AS misc-builder
 ARG TX_FUZZ_BRANCH
@@ -314,8 +297,3 @@ RUN ln -s /opt/besu/bin/besu /usr/local/bin/besu
 COPY --from=nethermind-builder /nethermind.version /nethermind.version
 COPY --from=nethermind-builder /git/nethermind/out /nethermind/
 RUN ln -s /nethermind/Nethermind.Runner /usr/local/bin/nethermind
-
-# prysm wormtongue
-COPY --from=wormtongue-builder /git/wormtongue/bins/beacon-chain /usr/local/bin/wormtongue-beacon-chain
-COPY --from=wormtongue-builder /git/wormtongue/bins/validator /usr/local/bin/wormtongue-validator
-COPY --from=wormtongue-builder /wormtongue.version /wormtongue.version

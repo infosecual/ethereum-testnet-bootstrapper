@@ -221,7 +221,7 @@ client-instances:
   prysm-geth:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.10"
     num-nodes: 1
 
@@ -237,7 +237,7 @@ client-instances:
   teku-geth:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.20"
     num-nodes: 1
 
@@ -250,7 +250,7 @@ client-instances:
   lighthouse-geth:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.30"
     num-nodes: 1
 
@@ -263,7 +263,7 @@ client-instances:
   lodestar-geth:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.40"
     num-nodes: 1
 
@@ -276,7 +276,7 @@ client-instances:
   nimbus-geth:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.50"
     num-nodes: 1
 
@@ -291,7 +291,7 @@ client-instances:
   prysm-besu:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.60"
     num-nodes: 1
 
@@ -307,7 +307,7 @@ client-instances:
   teku-besu:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.70"
     num-nodes: 1
 
@@ -320,7 +320,7 @@ client-instances:
   lighthouse-besu:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.80"
     num-nodes: 1
 
@@ -333,7 +333,7 @@ client-instances:
   lodestar-besu:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.90"
     num-nodes: 1
 
@@ -346,7 +346,7 @@ client-instances:
   nimbus-besu:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.100"
     num-nodes: 1
 
@@ -361,7 +361,7 @@ client-instances:
   prysm-nethermind:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.110"
     num-nodes: 1
 
@@ -377,7 +377,7 @@ client-instances:
   teku-nethermind:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.120"
     num-nodes: 1
 
@@ -390,7 +390,7 @@ client-instances:
   lighthouse-nethermind:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.130"
     num-nodes: 1
 
@@ -403,7 +403,7 @@ client-instances:
   lodestar-nethermind:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.140"
     num-nodes: 1
 
@@ -416,7 +416,7 @@ client-instances:
   nimbus-nethermind:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.150"
     num-nodes: 1
 

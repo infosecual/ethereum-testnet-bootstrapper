@@ -165,7 +165,7 @@ client-instances:
   lighthouse-geth:
     # docker-compose
     image: "etb-all-clients"
-    tag: "wormtongue-mainnet-current"
+    tag: "all-clients-mainnet-current"
     start-ip-address: "10.0.20.20"
     num-nodes: 10
 
